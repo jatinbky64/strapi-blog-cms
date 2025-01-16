@@ -466,6 +466,90 @@ export interface ApiCategoryCategory extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiGreycampusBlogContentGreycampusBlogContent
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'greycampus_blog_contents';
+  info: {
+    displayName: 'greycampus_blog_content';
+    pluralName: 'greycampus-blog-contents';
+    singularName: 'greycampus-blog-content';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    archived: Schema.Attribute.String;
+    author: Schema.Attribute.String;
+    blog_name: Schema.Attribute.String;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    featured_image_url: Schema.Attribute.Text;
+    last_modified_date: Schema.Attribute.DateTime;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::greycampus-blog-content.greycampus-blog-content'
+    > &
+      Schema.Attribute.Private;
+    meta_description: Schema.Attribute.Text;
+    overview: Schema.Attribute.Text;
+    post_body: Schema.Attribute.RichText;
+    post_language: Schema.Attribute.String;
+    post_seo_title: Schema.Attribute.String;
+    post_title: Schema.Attribute.String;
+    post_url: Schema.Attribute.String;
+    publish_date: Schema.Attribute.DateTime;
+    publishedAt: Schema.Attribute.DateTime;
+    tags: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiGreycampusBlogGreycampusBlog
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'greycampus_blogs';
+  info: {
+    displayName: 'greycampus_blogs';
+    pluralName: 'greycampus-blogs';
+    singularName: 'greycampus-blog';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    archived: Schema.Attribute.Integer;
+    author: Schema.Attribute.String;
+    blog_name: Schema.Attribute.String;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    featured_image_url: Schema.Attribute.String;
+    last_modified_date: Schema.Attribute.DateTime;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::greycampus-blog.greycampus-blog'
+    > &
+      Schema.Attribute.Private;
+    meta_description: Schema.Attribute.Text;
+    overview: Schema.Attribute.String;
+    post_body: Schema.Attribute.Blocks;
+    post_language: Schema.Attribute.String;
+    post_seo_title: Schema.Attribute.Text;
+    post_title: Schema.Attribute.Text;
+    post_url: Schema.Attribute.Text;
+    publish_date: Schema.Attribute.DateTime;
+    publishedAt: Schema.Attribute.DateTime;
+    tags: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface PluginContentReleasesRelease
   extends Struct.CollectionTypeSchema {
   collectionName: 'strapi_releases';
@@ -978,6 +1062,8 @@ declare module '@strapi/strapi' {
       'api::blog-detail.blog-detail': ApiBlogDetailBlogDetail;
       'api::blog.blog': ApiBlogBlog;
       'api::category.category': ApiCategoryCategory;
+      'api::greycampus-blog-content.greycampus-blog-content': ApiGreycampusBlogContentGreycampusBlogContent;
+      'api::greycampus-blog.greycampus-blog': ApiGreycampusBlogGreycampusBlog;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;
